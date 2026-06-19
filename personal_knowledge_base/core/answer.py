@@ -9,7 +9,7 @@ from ..llm import build_provider_chain
 from .recall import RecallCase, classify_profiles, recall
 
 
-PROMPT_PATH = Path("personal_psych_assistant/prompts/answer.md")
+PROMPT_PATH = Path("personal_knowledge_base/prompts/answer.md")
 
 
 def render_cases(cases: list[RecallCase]) -> str:

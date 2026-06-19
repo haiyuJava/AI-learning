@@ -7,7 +7,7 @@ from .base import LLMProvider, LLMResult
 from .template_provider import TemplateProvider
 
 
-CONFIG_PATH = Path("personal_psych_assistant/llm/config.json")
+CONFIG_PATH = Path("personal_knowledge_base/llm/config.json")
 
 
 class ProviderChain:

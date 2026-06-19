@@ -3,7 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/data" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/tools/browser-use" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/tools/wechat-article-exporter" vcs="Git" />
   </component>
 </project>

@@ -6,14 +6,18 @@ import sys
 from pathlib import Path
 
 from ..core.answer import answer
+from ..core.assistant import respond
+from ..core.intent_router import classify_intent
 from ..core.recall import classify_profiles, format_cases, recall
 
 
 FIXTURE_PATH = Path(__file__).with_name("fixtures") / "recall_cases.json"
+INTENT_FIXTURE_PATH = Path(__file__).with_name("fixtures") / "intent_cases.json"
 
 
 def run(use_llm: bool = False) -> int:
     cases = json.loads(FIXTURE_PATH.read_text(encoding="utf-8"))
+    intent_cases = json.loads(INTENT_FIXTURE_PATH.read_text(encoding="utf-8"))
     failures: list[str] = []
     for case in cases:
         query = case["input"]
@@ -25,6 +29,19 @@ def run(use_llm: bool = False) -> int:
         for expected in case.get("must_include", []):
             if expected not in output:
                 failures.append(f"{query}: missing `{expected}`")
+    for case in intent_cases:
+        query = case["input"]
+        intent = classify_intent(query)
+        if intent.name != case["expected_intent"]:
+            failures.append(f"{query}: expected intent {case['expected_intent']}, got {intent.name}")
+        if case["expected_intent"] in {"knowledge_summary", "source_lookup"}:
+            output = respond(query, use_llm=False)
+            for expected in case.get("must_include", []):
+                if expected not in output:
+                    failures.append(f"{query}: routed output missing `{expected}`")
+            for unexpected in case.get("must_not_include", []):
+                if unexpected in output:
+                    failures.append(f"{query}: routed output should not include `{unexpected}`")
     if failures:
         print("FAIL")
         for failure in failures:

@@ -1,0 +1,22 @@
+[
+  {
+    "input": "我之前的记录中对于应对失业有哪些观点和看法，请帮我总结后列出来",
+    "expected_intent": "knowledge_summary",
+    "must_include": ["mode=knowledge_summary", "失业"],
+    "must_not_include": ["识别到的焦虑类型"]
+  },
+  {
+    "input": "我现在很焦虑，担心未来失控",
+    "expected_intent": "emotional_support"
+  },
+  {
+    "input": "我以前遇到类似工作压力时是怎么处理的",
+    "expected_intent": "similar_recall"
+  },
+  {
+    "input": "我在哪篇文章里提到过失业",
+    "expected_intent": "source_lookup",
+    "must_include": ["mode=source_lookup", "路径", "失业"],
+    "must_not_include": ["识别到的焦虑类型"]
+  }
+]
