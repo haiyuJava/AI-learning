@@ -1,0 +1,18 @@
+[
+  {
+    "input": "我现在对工作非常焦虑",
+    "expected_profile": "work",
+    "must_include": ["大方向", "自由职业", "投资", "停止继续推演"]
+  },
+  {
+    "input": "我对于异性相处很焦虑",
+    "expected_profile": "relationship",
+    "must_include": ["低戒备", "慢悠悠的音乐", "宽敞明亮"]
+  },
+  {
+    "input": "我的2025年有哪些成就",
+    "expected_profile": "general",
+    "must_include": ["确定感", "安全感", "长期主线"]
+  }
+]
+

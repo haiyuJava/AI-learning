@@ -6,7 +6,7 @@ import re
 import sys
 from pathlib import Path
 
-from .knowledge import THEMES, compile_wiki
+from ..knowledge.compiler import THEMES, compile_wiki
 
 
 WIKI_DIR = Path("data/personal-psychology-wiki")

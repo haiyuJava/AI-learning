@@ -8,8 +8,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from .knowledge import compile_wiki
-from .profiles import load_profiles
+from ..knowledge.compiler import compile_wiki
+from ..knowledge.profiles import load_profiles
 
 
 WIKI_DIR = Path("data/personal-psychology-wiki")
@@ -235,7 +235,9 @@ def recall(query: str, limit: int = 4, profile: dict[str, Any] | None = None) ->
         keyword_boost = sum(8 for word in ANXIETY_WORDS if word in query and word in source.text)
         title_boost = len(query_terms & terms(source.title)) * 2
         profile_boost = source_profile_bonus(source, profile) if profile else 0
-        score = len(overlap) + keyword_boost + title_boost + profile_boost
+        feedback_title_overlap = query_terms & terms(source.title)
+        feedback_boost = 80 if source.kind == "feedback" and feedback_title_overlap else 0
+        score = len(overlap) + keyword_boost + title_boost + profile_boost + feedback_boost
         sentences = split_sentences(source.text)
         state = pick_sentences(sentences, query_terms, ANXIETY_WORDS, 2)
         actions = find_actions_after_state(sentences, query_terms, 3)
