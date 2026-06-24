@@ -6,7 +6,7 @@ import re
 from dataclasses import asdict
 from pathlib import Path
 
-from personal_knowledge_base.knowledge.ingest import (
+from personal_psych_assistant.knowledge.ingest import (
     SourceDocument,
     extract_docx,
     extract_html,
@@ -33,7 +33,7 @@ DOMAIN_KEYWORDS = {
     "investment": ["投资", "股票", "基金", "港股", "腾讯", "估值", "收益", "价值"],
     "career": ["工作", "失业", "职业", "面试", "裁员", "上班", "自由职业"],
     "psychology": ["焦虑", "情绪", "安全感", "压抑", "痛苦", "关系"],
-    "tech": ["AI", "Python", "RAG", "代码", "技术", "模型"],
+    "tech": ["AI", "Python", "RAG-Demo", "代码", "技术", "模型"],
 }
 
 
@@ -143,6 +143,7 @@ def build_index(data_dir: Path = DATA_DIR, index_dir: Path = INDEX_DIR) -> dict:
                 tags=tags,
             )
         )
+        # 在Python中，enumerate用来同时获取列表的索引（下标）和元素
         for position, chunk in enumerate(chunk_text(document.text), start=1):
             chunks.append(
                 ChunkRecord(

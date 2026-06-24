@@ -147,6 +147,8 @@ assistant.cmd
 
 统一入口，自动识别为 `knowledge_summary`。
 
+web端访问方法`运行.\web.cmd`
+
 ## 当前模块
 
 ```text

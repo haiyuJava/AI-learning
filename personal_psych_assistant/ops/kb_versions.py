@@ -36,7 +36,7 @@ def write_changelog(message: str, details: str = "") -> Path:
         details or "无",
         "",
         "## 回滚",
-        "使用 `python -m personal_knowledge_base.ops.kb_versions rollback <commit>` 回滚到指定版本。",
+        "使用 `python -m personal_psych_assistant.ops.kb_versions rollback <commit>` 回滚到指定版本。",
         "",
     ]
     path.write_text("\n".join(body), encoding="utf-8")

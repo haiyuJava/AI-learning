@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from collections import OrderedDict
 
-from personal_knowledge_base.llm import build_provider_chain
+from personal_psych_assistant.llm import build_provider_chain
 
 from .retriever import search
 from .schema import SearchResult
